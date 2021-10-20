@@ -1,20 +1,25 @@
 export const ColorTool = () => {
 
+  const colors = [
+    { id: 1, name: 'blue' },
+    { id: 2, name: 'green' },
+    { id: 3, name: 'red' },
+    { id: 4, name: 'purple' },
+    { id: 5, name: 'yellow' },
+    { id: 6, name: 'black' },
+  ];
+
   return (
     <>
       <header>
-        <h1>Color Tool</h1>
+        {/* React.createElement('h1', { className: 'page-header' }, 'Color Tool') */}
+        <h1 className="page-header">Color Tool</h1>
       </header>
       <ul>
-        <li>blue</li>
-        <li>green</li>
-        <li>red</li>
-        <li>purple</li>
-        <li>yellow</li>
-        <li>black</li>
+        {colors.map(color =>
+          <li key={color.id}>{color.name}</li>)}
       </ul>
     </>
   );
-
 
 };

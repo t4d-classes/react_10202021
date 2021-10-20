@@ -5,7 +5,7 @@ import { ColorTool } from './components/ColorTool';
 
 
 render(
-  // React.createElement(HelloWorld);
+  // React.createElement(ColorTool);
   <ColorTool />,
   document.querySelector('#root'),
 );
