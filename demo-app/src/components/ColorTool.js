@@ -2,6 +2,9 @@ import { useState } from 'react';
 
 export const ColorTool = (props) => {
 
+  //                                      ... array spread operator
+  const [ colors, setColors ] = useState([ ...props.colors ]);
+
   // array destructuring
   const [
     colorForm, // current state data
@@ -22,7 +25,15 @@ export const ColorTool = (props) => {
 
   };
 
-  console.log(colorForm);
+  const addColor = () => {
+    setColors([
+      ...colors,
+      {
+        ...colorForm,
+        id: Math.max(...colors.map(c => c.id), 0) + 1,
+      },
+    ]);
+  };
 
   return (
     <>
@@ -31,7 +42,7 @@ export const ColorTool = (props) => {
         <h1 className="page-header">Color Tool</h1>
       </header>
       <ul>
-        {props.colors.map(color =>
+        {colors.map(color =>
           <li key={color.id}>{color.name}</li>)}
       </ul>
       <form>
@@ -43,7 +54,7 @@ export const ColorTool = (props) => {
           <label htmlFor="hexcode-input">Color Hexcode:</label>
           <input id="hexcode-input" type="text" name="hexcode" value={colorForm.hexcode} onChange={change} />
         </div>
-        <button type="button">Add Color</button>
+        <button type="button" onClick={addColor}>Add Color</button>
       </form>
     </>
   );
