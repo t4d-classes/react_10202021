@@ -41,7 +41,7 @@ export const CarTool = (props) => {
       <CarTable cars={cars} editCarId={editCarId}
         onEditCar={setEditCarId} onDeleteCar={deleteCar}
         onSaveCar={saveCar} onCancelCar={cancelCar} />
-      <CarForm buttonText="Add Car" onClick={addCar} />
+      <CarForm buttonText="Add Car" onSubmitCar={addCar} />
     </>
   );
 };
