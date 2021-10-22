@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 import  { useForm } from '../hooks/useForm';
 
+import { useCarToolStoreContext } from '../contexts/carToolStoreContext';
+
 export const CarForm = (props) => {
+
+  const { addCar } = useCarToolStoreContext();
 
   const [ carForm, change, resetCarForm ] = useForm({
     make: '', model: '', year: 1900, color: '', price: 0
   });
 
   const submitCar = () => {
-    props.onSubmitCar(carForm);
+    addCar(carForm);
     resetCarForm();
   };
 

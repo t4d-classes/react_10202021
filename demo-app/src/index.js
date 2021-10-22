@@ -1,5 +1,6 @@
 import { render } from 'react-dom';
 
+import { CarToolStoreProvider } from './contexts/carToolStoreContext';
 import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
 import { DataTable } from './components/DataTable';
@@ -46,7 +47,9 @@ const config = {
 render(
   <>
     <ColorTool colors={colorList} />
-    <CarTool cars={carList} />
+    <CarToolStoreProvider cars={carList}>
+      <CarTool />
+    </CarToolStoreProvider>
     <DataTable config={config} items={carList} />
   </>,
   document.querySelector('#root'),
