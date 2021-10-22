@@ -1,13 +1,23 @@
 import { useState } from 'react';
 
-export const CarEditRow = (props) => {
+export const CarEditRow = ({
+  car,
+  onSaveCar,
+  onCancelCar: cancelCar,
+}) => {
+
+  // const { car, onSaveCar, onCancelCar } = props;
+
+  // const car = props.car;
+  // const onSaveCar = props.onSaveCar;
+  // const onCancelCar = props.onCancelCar;
 
   const [ carForm, setCarForm ] = useState({
-    make: props.car.make,
-    model: props.car.model,
-    year: props.car.year,
-    color: props.car.color,
-    price: props.car.price
+    make: car.make,
+    model: car.model,
+    year: car.year,
+    color: car.color,
+    price: car.price
   });
 
   const change = e => {
@@ -20,11 +30,12 @@ export const CarEditRow = (props) => {
   };
 
   const saveCar = () => {
+    onSaveCar({ ...carForm, id: car.id });
   };  
 
   return (
     <tr>
-      <td>{props.car.id}</td>
+      <td>{car.id}</td>
       <td><input type="text" name="make" value={carForm.make} onChange={change} /></td>
       <td><input type="text" name="model" value={carForm.model} onChange={change} /></td>
       <td><input type="number" name="year" value={carForm.year} onChange={change} /></td>
@@ -34,7 +45,7 @@ export const CarEditRow = (props) => {
         <button type="button"
           onClick={saveCar}>Save</button>
         <button type="button"
-          onClick={() => null}>Cancel</button>
+          onClick={cancelCar}>Cancel</button>
       </td>
     </tr>
   );

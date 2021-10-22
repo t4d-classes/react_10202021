@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 export const CarForm = (props) => {
@@ -51,3 +52,35 @@ export const CarForm = (props) => {
 
 
 };
+
+CarForm.defaultProps = {
+  buttonText: 'Submit Car',
+};
+
+CarForm.propTypes = {
+  buttonText: PropTypes.string.isRequired,
+  onSubmitCar: PropTypes.func.isRequired,
+};
+
+// const jsonData = '[ { "name": "red", "value": "f00" }, { "name": "green", "value": "0f0" }, { "name": "blue", "value": "00f" }]';
+
+// const colorKeyValues = JSON.parse(jsonData);
+
+// const colorsEnum = colorKeyValues.reduce(
+//   (enumObj, { name, value}) => {
+//     enumObj[name] = value;
+//     return enumObj;
+//   }
+//   ,{});
+
+// console.log(colorsEnum);
+
+// console.log(colorsEnum.red);
+// console.log(colorsEnum.blue);
+
+// const enumValues = Object.values(colorsEnum);
+
+// console.log(enumValues);
+
+// PropTypes.oneOf(enumValues);
+

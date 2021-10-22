@@ -1,7 +1,15 @@
+import PropTypes from 'prop-types';
+
 import { CarEditRow } from './CarEditRow';
 import { CarViewRow } from "./CarViewRow";
 
-export const CarTable = (props) => {
+export const CarTable = ({
+  cars, editCarId,
+  onEditCar: editCar,
+  onDeleteCar: deleteCar,
+  onSaveCar: saveCar,
+  onCancelCar: cancelCar,
+}) => {
 
   return (
     <table>
@@ -17,11 +25,12 @@ export const CarTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.cars.map((car) => (
-            car.id === props.editCarId
-              ? <CarEditRow key={car.id} car={car} />
+          {cars.map((car) => (
+            car.id === editCarId
+              ? <CarEditRow key={car.id} car={car}
+                  onSaveCar={saveCar} onCancelCar={cancelCar} />
               : <CarViewRow key={car.id} car={car}
-                  onEditCar={props.onEditCar} onDeleteCar={props.onDeleteCar} />
+                  onEditCar={editCar} onDeleteCar={deleteCar} />
           ))}
         </tbody>
       </table>    
@@ -29,3 +38,25 @@ export const CarTable = (props) => {
 
 
 }
+
+CarTable.defaultProps = {
+  cars: [],
+  editCarId: -1,
+};
+
+CarTable.propTypes = {
+  cars: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    make: PropTypes.string.isRequired,
+    model: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    color: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  })),
+  editCarId: PropTypes.number.isRequired,
+  onEditCar: PropTypes.func.isRequired,
+  onDeleteCar: PropTypes.func.isRequired,
+  onSaveCar: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+};
+
