@@ -1,15 +1,15 @@
-import { useCarToolStoreContext } from '../contexts/carToolStoreContext';
+import PropTypes from 'prop-types';
 
 import { CarEditRow } from './CarEditRow';
 import { CarViewRow } from "./CarViewRow";
 
-export const CarTable = () => {
-
-  const { 
-    cars, editCarId,
-    editCar, deleteCar,
-    saveCar, cancelCar,
-  } = useCarToolStoreContext();
+export const CarTable = ({
+  cars, editCarId,
+  onEditCar: editCar,
+  onDeleteCar: deleteCar,
+  onSaveCar: saveCar,
+  onCancelCar: cancelCar,
+}) => {
 
   return (
     <table>
@@ -39,4 +39,23 @@ export const CarTable = () => {
 
 }
 
+CarTable.defaultProps = {
+  cars: [],
+  editCarId: -1,
+};
 
+CarTable.propTypes = {
+  cars: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    make: PropTypes.string.isRequired,
+    model: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    color: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  })),
+  editCarId: PropTypes.number.isRequired,
+  onEditCar: PropTypes.func.isRequired,
+  onDeleteCar: PropTypes.func.isRequired,
+  onSaveCar: PropTypes.func.isRequired,
+  onCancelCar: PropTypes.func.isRequired,
+};
