@@ -53,7 +53,7 @@ CarForm.defaultProps = {
 
 CarForm.propTypes = {
   buttonText: PropTypes.string.isRequired,
-  onSubmitCar: PropTypes.func.isRequired,
+  // onSubmitCar: PropTypes.func.isRequired,
 };
 
 // const jsonData = '[ { "name": "red", "value": "f00" }, { "name": "green", "value": "0f0" }, { "name": "blue", "value": "00f" }]';
